@@ -50,11 +50,18 @@
 
             <!-- Gallery Content Side -->
              <div class="content right">
-                <!-- Gallery Item -->
-                <ion-grid>
-                    <ion-row id="photo-row" class="output" />
-                </ion-grid>  
-             </div>          
+                <div id="gallery-scroll" class="gallery-scroll">
+                    <ion-grid>
+                    <ion-row id="photo-row" class="output"></ion-row>
+                    </ion-grid>
+                    <ion-infinite-scroll threshold="100px" id="infinite-scroll" scroll-target="#gallery-scroll">
+                    <ion-infinite-scroll-content
+                        loading-spinner="bubbles"
+                        loading-text="Loading more photos...">
+                    </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </div>
+            </div>  
 
       
              <!-- hidden canvas to draw our images -->
@@ -110,6 +117,7 @@
 
     <style>
 
+
     /* Content Div */
     .content {
         height: 100%;
@@ -130,6 +138,7 @@
     .right {
         width: 50%;
         float: right;
+        box-shadow: -10px 0px 10px 0px rgba(0,0,0,0.1);
     }
 
 
@@ -141,8 +150,8 @@
     /* Ensure the video container is square and centered */
     .video-container {
         position: relative;
-        width: 320px;   /* match your video/canvas size */
-        height: 320px;
+        width: 50vh;   /* match your video/canvas size */
+        height: 50vh;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -168,6 +177,16 @@
         transform: translateX(-50%);
         z-index: 2;
     }
+
+
+    /* Gallery Scroll */
+    .gallery-scroll {
+        height: 100%; /* or any fixed height you want */
+        overflow-y: auto;
+        position: relative;
+        background: #fff; /* optional */
+        border-radius: 8px; /* optional */
+        }
 
     /* Hide Elements with this class */
     .hidden {
