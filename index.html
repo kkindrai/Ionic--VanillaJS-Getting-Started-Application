@@ -10,6 +10,8 @@
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
 
+    <!-- Import Local Scripts -->
+     <script src="demo.js"></script>
 </head>
 <body>
     <!-- Tabs -->
@@ -34,23 +36,30 @@
             </ion-toolbar>
         </ion-header>
         <ion-content>
-            <!-- Implementing the Application Content -->
-
-            <!-- Gallery Item -->
-            <ion-grid>
-                <ion-row id="photo-row"></ion-row>
-            </ion-grid>  
-
-
-            <!-- Camera Button -->
-              <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                    <ion-fab-button onclick="takePhoto()">
+            <!-- Camera Content Side -->
+            <div class="content left">
+                <div class="video-container">
+                    <video id="video"></video>
+                    <ion-fab class="fab-inside-video">
+                        <ion-fab-button id="start-button">
                         <ion-icon name="camera"></ion-icon>
-                    </ion-fab-button>
-                </ion-fab>
+                        </ion-fab-button>
+                    </ion-fab>
+                </div>
+            </div>
 
+            <!-- Gallery Content Side -->
+             <div class="content right">
+                <!-- Gallery Item -->
+                <ion-grid>
+                    <ion-row id="photo-row" class="output" />
+                </ion-grid>  
+             </div>          
 
-
+      
+             <!-- hidden canvas to draw our images -->
+             <canvas id="canvas" class="hidden"> </canvas>
+  
         </ion-content>
         </div>
     </ion-tab>
@@ -100,14 +109,72 @@
     </ion-tabs>
 
     <style>
-    /* This style is for demonstration purposes only. */
-    /* It's not required for the tabs to function. */
-    .example-content {
+
+    /* Content Div */
+    .content {
+        height: 100%;
+    }
+
+    /* Left Side Div */
+    .left {
+        width: 50%;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertical centering */
+        align-items: center;     /* horizontal centering */
+
+    }
+
+    /* Right Side Div */
+    .right {
+        width: 50%;
+        float: right;
+    }
+
+
+    ion-content {
+        min-height: 100vh;
+    }
+
+    /* Video Camera Elements */
+    /* Ensure the video container is square and centered */
+    .video-container {
+        position: relative;
+        width: 320px;   /* match your video/canvas size */
+        height: 320px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%;
+        transform: translateY(-25%);
     }
+
+    /* Make the video square and cover the container */
+    #video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: #000;
+        display: block;
+        border-radius: 8px; /* optional for rounded corners */
+    }
+
+    /* Position the FAB button at the bottom center of the video */
+    .fab-inside-video {
+        position: absolute;
+        left: 50%;
+        bottom: -26px; /* adjust as needed */
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    /* Hide Elements with this class */
+    .hidden {
+        display: none;
+    }
+
+
     </style>
     
 </body>
