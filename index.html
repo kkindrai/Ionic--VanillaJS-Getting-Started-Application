@@ -36,26 +36,28 @@
                     </ion-toolbar>
                 </ion-header>
                 <ion-content>
-                    <!-- Camera Content Side -->
-                    <div class="content left">
-                        <div class="video-container">
-                            <video id="video"></video>
-                            <ion-fab class="fab-inside-video">
-                                <ion-fab-button id="start-button">
-                                <ion-icon name="camera"></ion-icon>
-                                </ion-fab-button>
-                            </ion-fab>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Content Side -->
-                    <div class="content right">
-                        <div id="gallery-scroll" class="gallery-scroll">
-                            <ion-grid>
-                                <ion-row id="photo-row" class="output"></ion-row>
-                            </ion-grid>
-                        </div>
-                    </div>  
+                    <ion-grid>
+                        <ion-row>
+                            <!-- Camera Content Side -->
+                            <ion-col>
+                                <div class="video-container">
+                                    <video id="video"></video>
+                                    <ion-fab class="fab-inside-video">
+                                        <ion-fab-button id="start-button">
+                                        <ion-icon name="camera"></ion-icon>
+                                        </ion-fab-button>
+                                    </ion-fab>
+                                </div>
+                            </ion-col>
+                            <!-- Gallery Content Side -->
+                            <ion-col>
+                                <div id="gallery-scroll" class="gallery-scroll">
+                                    <ion-grid>
+                                        <ion-row id="photo-row" class="output"></ion-row>
+                                    </ion-grid>
+                                </div>
+                        </ion-row>
+                    </ion-grid>
 
                     <!-- hidden canvas to draw our images -->
                     <canvas id="canvas" class="hidden"> </canvas>
@@ -109,30 +111,8 @@
     </ion-tabs>
 
     <style>
-        /* Content Div */
-        .content {
-            height: 100%;
-        }
-
-        /* Left Side Div */
-        .left {
-            width: 50%;
-            float: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* vertical centering */
-            align-items: center;     /* horizontal centering */
-
-        }
-
-        /* Right Side Div */
-        .right {
-            width: 50%;
-            float: right;
-            box-shadow: -10px 0px 10px 0px rgba(0,0,0,0.1);
-        }
-
-        /* Ion-Content Element to 100 view height minimum */
+        /* Desktop / Normal layout styles (keep your existing styles here) */
+         /* Ion-Content Element to 100 view height minimum */
         ion-content {
             min-height: 100vh;
         }
@@ -140,14 +120,14 @@
         /* Video Camera Elements */
         /* Ensure the video container is square and centered */
         .video-container {
-            position: relative;
-            width: 45vw;   /* match your video/canvas size */
-            height: 45vw;
+            position: fixed;
+            width: 25vw;   /* match your video/canvas size */
+            height: 25vw;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            transform: translateY(-25%);
+            transform: translateX(50%) translateY(50%);
         }
 
         /* Make the video square and cover the container */
@@ -172,7 +152,7 @@
         /* Gallery Scroll */
         .gallery-scroll {
             height: 100%; /* or any fixed height you want */
-            overflow-y: auto;
+            overflow-y: scroll;
             position: relative;
             border-radius: 8px; 
         }
@@ -181,6 +161,28 @@
         .hidden {
             display: none;
         }
+
+
+        
+
+        /* Mobile layout styles */
+        @media (max-width: 600px) {
+            /* Place your mobile layout CSS here */
+
+            /* Example selectors: */
+            body {
+                /* ... */
+            }
+            .video-container {
+                /* ... */
+            }
+            .gallery-scroll {
+                /* ... */
+            }
+            /* Add more as needed */
+        }
+        
+       
     </style>
     
 </body>
