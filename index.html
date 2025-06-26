@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
 
     <!-- Import Local Scripts -->
-     <script src="demo.js"></script>
+    <script src="demo.js"></script>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <!-- Tabs -->
@@ -59,8 +60,7 @@
                         </ion-row>
                     </ion-grid>
 
-                    <!-- Hidden canvas -->
-                    <canvas id="canvas" class="hidden"> </canvas>
+                    
                 </ion-content>
 
             </div>
@@ -109,69 +109,7 @@
             </ion-tab-button>
         </ion-tab-bar>
     </ion-tabs>
-
-    <style>
-        ion-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            min-height: calc(100vh - 23vh); /* Ensure full window height minus nav bar */
-        }
-
-        ion-grid {
-            height: 100%;
-        }
-
-        ion-row { 
-            min-height: 100%;
-            height: 100%; 
-        }
-
-        ion-col {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        ion-grid.gallery-scroll ion-col {
-            height: fit-content;
-        }
-
-        .gallery-scroll {
-            overflow-y: auto;
-            height: 100%;
-        }
-
-        .video-container {
-            width: 75%;
-            aspect-ratio: 1 / 1;
-            height: auto; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-        
-        #video {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1; 
-            object-fit: cover;
-            background: #000;
-            display: block;
-            border-radius: 8px; 
-        }
-
-        .fab-inside-video {
-            margin-top: 75%;
-            z-index: 2;
-        }
-
-        .hidden { 
-            display: none;
-        }
-    </style>
+    <!-- Hidden canvas -->
+    <canvas id="canvas" class="hidden"> </canvas>
 </body>
 </html>
