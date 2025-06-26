@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS - Getting Started Application</title>
+    <title>Ionic with JavaScript - Getting Started Application</title>
 
     <!-- Import Ionic Scripts -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
@@ -38,31 +38,33 @@
                 <ion-content>
                     <ion-grid>
                         <ion-row>
-                            <!-- Camera Content Side -->
-                            <ion-col>
-                                <div class="video-container">
-                                    <video id="video"></video>
-                                    <ion-fab class="fab-inside-video">
-                                        <ion-fab-button id="start-button">
-                                        <ion-icon name="camera"></ion-icon>
-                                        </ion-fab-button>
-                                    </ion-fab>
-                                </div>
-                            </ion-col>
-                            <!-- Gallery Content Side -->
-                            <ion-col>
-                                <div id="gallery-scroll" class="gallery-scroll">
-                                    <ion-grid>
-                                        <ion-row id="photo-row" class="output"></ion-row>
-                                    </ion-grid>
-                                </div>
+                        <!-- Camera Column -->
+                        <ion-col size="12" size-md="6">
+                            <div class="video-container">
+                            <video id="video"></video>
+                            <ion-fab class="fab-inside-video">
+                                <ion-fab-button id="start-button">
+                                <ion-icon name="camera"></ion-icon>
+                                </ion-fab-button>
+                            </ion-fab>
+                            </div>
+                        </ion-col>
+
+                        <!-- Gallery Column -->
+                        <ion-col size="12" size-md="6">
+                            <!-- <div class="gallery-scroll"> -->
+                            <ion-grid class="gallery-scroll">
+                                <ion-row id="photo-row" class="output"></ion-row>
+                            </ion-grid>
+                            <!-- </div> -->
+                        </ion-col>
                         </ion-row>
                     </ion-grid>
 
-                    <!-- hidden canvas to draw our images -->
+                    <!-- Hidden canvas -->
                     <canvas id="canvas" class="hidden"> </canvas>
-        
                 </ion-content>
+
             </div>
         </ion-tab>
         <ion-tab tab="library">
@@ -111,79 +113,67 @@
     </ion-tabs>
 
     <style>
-        /* Desktop / Normal layout styles (keep your existing styles here) */
-         /* Ion-Content Element to 100 view height minimum */
         ion-content {
-            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: calc(100vh - 23vh); /* Ensure full window height minus nav bar */
         }
 
-        /* Video Camera Elements */
-        /* Ensure the video container is square and centered */
+        ion-grid {
+            height: 100%;
+        }
+
+        ion-row { 
+            min-height: 100%;
+            height: 100%; 
+        }
+
+        ion-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        ion-grid.gallery-scroll ion-col {
+            height: fit-content;
+        }
+
+        .gallery-scroll {
+            overflow-y: auto;
+            height: 100%;
+        }
+
         .video-container {
-            position: fixed;
-            width: 25vw;   /* match your video/canvas size */
-            height: 25vw;
-            margin: 0 auto;
+            width: 75%;
+            aspect-ratio: 1 / 1;
+            height: auto; 
             display: flex;
             align-items: center;
             justify-content: center;
-            transform: translateX(50%) translateY(50%);
+            margin: 0 auto;
         }
-
-        /* Make the video square and cover the container */
+        
         #video {
             width: 100%;
-            height: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1; 
             object-fit: cover;
             background: #000;
             display: block;
-            border-radius: 8px; /* optional for rounded corners */
-        }
-
-        /* Position the FAB button at the bottom center of the video */
-        .fab-inside-video {
-            position: absolute;
-            left: 50%;
-            bottom: -26px; /* adjust as needed */
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        /* Gallery Scroll */
-        .gallery-scroll {
-            height: 100%; /* or any fixed height you want */
-            overflow-y: scroll;
-            position: relative;
             border-radius: 8px; 
         }
 
-        /* Hide Elements with this class */
-        .hidden {
+        .fab-inside-video {
+            margin-top: 75%;
+            z-index: 2;
+        }
+
+        .hidden { 
             display: none;
         }
-
-
-        
-
-        /* Mobile layout styles */
-        @media (max-width: 600px) {
-            /* Place your mobile layout CSS here */
-
-            /* Example selectors: */
-            body {
-                /* ... */
-            }
-            .video-container {
-                /* ... */
-            }
-            .gallery-scroll {
-                /* ... */
-            }
-            /* Add more as needed */
-        }
-        
-       
     </style>
-    
 </body>
 </html>
